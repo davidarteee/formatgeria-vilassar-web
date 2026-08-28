@@ -28,13 +28,11 @@ jobs:
           # Carpeta LOCAL que es puja (l'arrel del repo).
           local-dir: ./
 
-          # Carpeta REMOTA de destí al servidor (arrel pública del subdomini).
-          # Confirma la ruta exacta al hPanel/FileZilla abans del primer desplegament real.
-          # Sol ser una d'aquestes:
-          #   ./                                   (si l'usuari FTP ja apunta al subdomini)
-          #   ./public_html/                       (compte FTP principal, web principal)
-          #   ./domains/dakerstudio.com/public_html/formatgeriavdm/   (subdomini dins domini principal)
-          server-dir: ./
+          # Carpeta REMOTA de destí al servidor.
+          # L'usuari FTP està acotat al subdomini formatgeriavdm i aterra a
+          # /home/u663684857/domains/formatgeriavdm.dakerstudio.com/ , on la
+          # carpeta pública és public_html. Per això la destí és ./public_html/
+          server-dir: ./public_html/
 
           # No esborris fitxers del servidor que no siguin al repo (més segur).
           dangerous-clean-slate: false
