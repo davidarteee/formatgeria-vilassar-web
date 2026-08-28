@@ -37,9 +37,9 @@ jobs:
           # No esborris fitxers del servidor que no siguin al repo (més segur).
           dangerous-clean-slate: false
 
-          # No cal pujar aquests fitxers al servidor:
-          exclude:
-            - "**/.git*"
-            - "**/.git*/**"
-            - "README.md"
-            - ".gitignore"
+          # No cal pujar aquests fitxers al servidor (llista en text, una per línia):
+          exclude: |
+            **/.git*
+            **/.git*/**
+            README.md
+            .gitignore
