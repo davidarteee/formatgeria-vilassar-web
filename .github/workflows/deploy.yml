@@ -29,10 +29,9 @@ jobs:
           local-dir: ./
 
           # Carpeta REMOTA de destí al servidor.
-          # L'usuari FTP està acotat al subdomini formatgeriavdm i aterra a
-          # /home/u663684857/domains/formatgeriavdm.dakerstudio.com/ , on la
-          # carpeta pública és public_html. Per això la destí és ./public_html/
-          server-dir: ./public_html/
+          # Comprovat en producció: l'usuari FTP ja aterra DINS de public_html
+          # (l'arrel pública del subdomini), així que la destí és l'arrel: ./
+          server-dir: ./
 
           # No esborris fitxers del servidor que no siguin al repo (més segur).
           dangerous-clean-slate: false
