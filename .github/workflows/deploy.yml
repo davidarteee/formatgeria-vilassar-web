@@ -1,0 +1,47 @@
+name: Desplegar a Hostinger (FTP)
+
+# S'executa cada cop que fas push a la branca main
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}   # permet llançar-lo a mà des de la pestanya Actions
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descarregar el repositori
+        uses: actions/checkout@v4
+
+      - name: Pujar fitxers per FTP a Hostinger
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          # Aquests 3 valors venen dels "Secrets" del repo a GitHub.
+          # NO s'escriuen mai aquí en clar.
+          server:   ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+
+          # Protocol: ftp (per defecte) o ftps (recomanat si Hostinger l'ofereix).
+          protocol: ftps
+
+          # Carpeta LOCAL que es puja (l'arrel del repo).
+          local-dir: ./
+
+          # Carpeta REMOTA de destí al servidor (arrel pública del subdomini).
+          # Confirma la ruta exacta al hPanel/FileZilla abans del primer desplegament real.
+          # Sol ser una d'aquestes:
+          #   ./                                   (si l'usuari FTP ja apunta al subdomini)
+          #   ./public_html/                       (compte FTP principal, web principal)
+          #   ./domains/dakerstudio.com/public_html/formatgeriavdm/   (subdomini dins domini principal)
+          server-dir: ./
+
+          # No esborris fitxers del servidor que no siguin al repo (més segur).
+          dangerous-clean-slate: false
+
+          # No cal pujar aquests fitxers al servidor:
+          exclude:
+            - "**/.git*"
+            - "**/.git*/**"
+            - "README.md"
+            - ".gitignore"
