@@ -22,11 +22,9 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
 
-          # Protocol: ftp (per defecte) o ftps (recomanat si Hostinger l'ofereix).
-          protocol: ftps
+          # FTP normal: l'FTPS de Hostinger falla sovint des de CI (Timeout control socket).
+          protocol: ftp
           port: 21
-
-          # Marge de temps de connexió (l'FTPS de Hostinger pot ser lent).
           timeout: 60000
 
           # Carpeta LOCAL que es puja (l'arrel del repo).
