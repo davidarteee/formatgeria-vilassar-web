@@ -24,6 +24,10 @@ jobs:
 
           # Protocol: ftp (per defecte) o ftps (recomanat si Hostinger l'ofereix).
           protocol: ftps
+          port: 21
+
+          # Marge de temps de connexió (l'FTPS de Hostinger pot ser lent).
+          timeout: 60000
 
           # Carpeta LOCAL que es puja (l'arrel del repo).
           local-dir: ./
